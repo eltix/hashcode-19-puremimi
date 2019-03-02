@@ -10,7 +10,7 @@ def create_dummy_slides(pset):
     photos = pset.photos
     horizontals = [p for p in photos if p.orientation == Orientation.HORIZONTAL]
     verticals = [p for p in photos if p.orientation == Orientation.VERTICAL]
-    slides = [Monoptych(p.id) for p in horizontals]
+    slides = [Monoptych(p) for p in horizontals]
     diptychs = zip(*[iter(verticals)]*2)
-    slides += [Diptych(d[0].id, d[1].id) for d in diptychs]
+    slides += [Diptych(*d) for d in diptychs]
     return slides

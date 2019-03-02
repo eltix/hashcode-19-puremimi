@@ -18,4 +18,5 @@ for data_set in data_sets:
     # dummy submission
     # slides = [Monoptych(0), Diptych(1, 2), Monoptych(3)]
     submission = Submission(data_set, slides)
+    print('Submission score {}'.format(submission.submission_score()))
     submission.write_submission()
