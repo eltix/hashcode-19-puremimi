@@ -14,13 +14,14 @@ class Monoptych(Slide):
 
     def __init__(self, photo_1):
         self.photo_1 = photo_1
+        self.id = 'm'+str(photo_1.id)
+        self.tags = photo_1.tags
 
     def tags(self):
-        return self.photo_1.tags
+        return self.tags
 
     def serialize(self):
         return str(self.photo_1.id)
-
 
 class Diptych(Slide):
     """ A slide with two photos """
@@ -28,9 +29,11 @@ class Diptych(Slide):
     def __init__(self, photo_1, photo_2):
         self.photo_1 = photo_1
         self.photo_2 = photo_2
+        self.id = '({},{})'.format(str(photo_1.id), str(photo_2.id))
+        self.tags = photo_1.tags + photo_2.tags
 
     def tags(self):
-        return self.photo_1.tags + self.photo_2.tags
+        return self.tags
 
     def serialize(self):
         return str(self.photo_1.id) + ' ' + str(self.photo_2.id)
@@ -66,8 +69,8 @@ def compute_score(slides):
 
 def score_slide_pair(slide_pair):
     left_slide, right_slide = slide_pair
-    left_tags = set(left_slide.tags())
-    right_tags = set(right_slide.tags())
+    left_tags = set(left_slide.tags)
+    right_tags = set(right_slide.tags)
     intersec = len(left_tags.intersection(right_tags))
     left_diff = len(left_tags.difference(right_tags))
     right_diff = len(right_tags.difference(left_tags))

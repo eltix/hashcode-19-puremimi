@@ -2,7 +2,6 @@ from input import parse_input
 from slide import *
 from slideshow import *
 
-
 a = 'a_example'
 b = 'b_lovely_landscapes'
 c = 'c_memorable_moments'
@@ -15,8 +14,8 @@ total_score=0
 for data_set in data_sets:
     photo_set = parse_input(data_set)
     slides = create_dummy_slides(photo_set)
-    # dummy submission
-    # slides = [Monoptych(0), Diptych(1, 2), Monoptych(3)]
+    # slides = random_diptychs_greedy(photo_set)
+    # slides = naive_greedy(photo_set)
     submission = Submission(data_set, slides)
     score = submission.submission_score()
     total_score += score
